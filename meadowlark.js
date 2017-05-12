@@ -1,6 +1,8 @@
-var express = require('express');
+var express = require('express'); //require — функция Node для импорта модулей.
 
 var app = express();
+
+var fortune = require('./lib/fortune.js');
 
 // Установка механизма представления handlebars
 var handlebars = require('express-handlebars').create({ defaultLayout:'main' });
@@ -15,7 +17,7 @@ app.get('/', function(req, res){ //app.get — метод, с помощью к�
 });
 
 app.get('/about', function (req, res) {
-	 res.render('about');
+	 res.render('about', { fortune: fortune.getFortune() });
 });
 
 // page 404
